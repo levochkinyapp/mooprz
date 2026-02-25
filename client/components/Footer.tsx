@@ -116,7 +116,7 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path d="M6.5 7h2l3.5 7-3.5 7h-2l2.5-5H6.5V7z M12.5 7h2l-2.5 5 2.5 7h-2l-3.5-7 3.5-5z" fillRule="evenodd" />
+                  <path d="M6 7v10h2l3-5 3 5h2V7h-2v6l-2-3-2 3V7H6z" />
                 </svg>
               </a>
               <a
