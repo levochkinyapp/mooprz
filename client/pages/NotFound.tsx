@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { AlertCircle } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,14 +15,43 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-      </div>
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+
+      <main className="flex-1 container mx-auto px-4 py-20">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center">
+              <AlertCircle size={40} className="text-red-600" />
+            </div>
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4">
+            404
+          </h1>
+
+          <p className="text-2xl font-semibold text-gray-800 mb-2">
+            Страница не найдена
+          </p>
+
+          <p className="text-lg text-gray-600 mb-8">
+            К сожалению, запрашиваемая страница не существует на нашем сайте.
+          </p>
+
+          <p className="text-gray-600 mb-8">
+            Путь: <code className="bg-gray-100 px-3 py-1 rounded font-mono">{location.pathname}</code>
+          </p>
+
+          <a
+            href="/"
+            className="inline-block px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-blue-900 transition-colors duration-200"
+          >
+            Вернуться на главную
+          </a>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };
