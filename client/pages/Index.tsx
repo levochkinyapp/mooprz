@@ -129,22 +129,21 @@ export default function Index() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen min-w-0 w-full pt-20">
       <Header />
 
       {/* Hero Banner */}
-      <section className="relative bg-gradient-to-r from-primary to-blue-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
-
+      <section
+        className="relative overflow-hidden bg-cover bg-center text-heading"
+        style={{ backgroundImage: "url('/hero-bg.png')" }}
+      >
+        <div className="absolute inset-0 bg-white/30" aria-hidden />
         <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-fade-in">
+          <div className="max-w-[900px]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight animate-fade-in">
               Московская областная организация профсоюза работников здравоохранения
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 animate-fade-in">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 animate-fade-in max-w-[600px] mt-[10px]">
               Защита интересов, поддержка и развитие медицинских работников
               Подмосковья
             </p>
@@ -152,7 +151,7 @@ export default function Index() {
               <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-colors duration-200 transform hover:scale-105">
                 Подать заявку на услугу
               </button>
-              <button className="px-8 py-3 bg-white hover:bg-gray-100 text-primary font-bold rounded-lg transition-colors duration-200">
+              <button className="px-8 py-3 bg-transparent border-2 border-heading text-heading font-bold rounded-lg transition-colors duration-200 hover:bg-hoverCyan">
                 Узнать больше
               </button>
             </div>
@@ -161,13 +160,13 @@ export default function Index() {
       </section>
 
       {/* Quick Links Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Наши услуги
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
               Полный спектр услуг для членов профсоюза и медицинских работников
             </p>
           </div>
@@ -178,12 +177,12 @@ export default function Index() {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer"
+                  className="bg-transparent rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer border border-gray-200"
                 >
                   <div className={`${link.color} w-14 h-14 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                     <IconComponent className={`${link.iconColor} w-7 h-7`} />
                   </div>
-                  <h3 className="text-lg font-bold text-primary mb-2">
+                  <h3 className="text-base sm:text-lg font-bold mb-2">
                     {link.title}
                   </h3>
                   <p className="text-gray-600 text-sm">{link.description}</p>
@@ -195,13 +194,13 @@ export default function Index() {
       </section>
 
       {/* News/Updates Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Последние новости
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
               Будьте в курсе актуальной информации о мероприятиях и событиях
             </p>
           </div>
@@ -210,7 +209,7 @@ export default function Index() {
             {[1, 2, 3].map((item) => (
               <div
                 key={item}
-                className="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="bg-transparent rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200"
               >
                 <div className="bg-gradient-to-r from-primary to-blue-900 h-48 flex items-center justify-center">
                   <div className="text-white text-sm font-semibold">
@@ -221,7 +220,7 @@ export default function Index() {
                   <div className="text-sm text-accent font-semibold mb-2">
                     {`${5 - item} дня назад`}
                   </div>
-                  <h3 className="text-xl font-bold text-primary mb-3">
+                  <h3 className="text-lg sm:text-xl font-bold mb-3">
                     {item === 1 &&
                       "Запуск нового портала для членов профсоюза"}
                     {item === 2 &&
@@ -256,13 +255,13 @@ export default function Index() {
       </section>
 
       {/* Video Carousel Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24 overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Видеотека
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
               Полезная информация и истории от наших членов
             </p>
           </div>
@@ -276,7 +275,7 @@ export default function Index() {
                   className="w-full h-96 object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                  <button className="w-20 h-20 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all">
+                  <button className="w-20 h-20 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all shadow-lg">
                     <svg className="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                     </svg>
@@ -287,13 +286,13 @@ export default function Index() {
               {/* Navigation Buttons */}
               <button
                 onClick={prevVideo}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-14 md:-translate-x-16 bg-primary text-white p-3 rounded-full hover:bg-blue-900 transition-colors"
+                className="hidden min-[1082px]:flex absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-14 md:-translate-x-16 bg-primary text-white p-3 rounded-full hover:bg-blue-900 transition-colors"
               >
                 <ChevronLeft size={24} />
               </button>
               <button
                 onClick={nextVideo}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-14 md:translate-x-16 bg-primary text-white p-3 rounded-full hover:bg-blue-900 transition-colors"
+                className="hidden min-[1082px]:flex absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-14 md:translate-x-16 bg-primary text-white p-3 rounded-full hover:bg-blue-900 transition-colors"
               >
                 <ChevronRight size={24} />
               </button>
@@ -301,7 +300,7 @@ export default function Index() {
 
             {/* Video Info */}
             <div className="mt-6">
-              <h3 className="text-2xl font-bold text-primary mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
                 {videos[currentVideoIndex].title}
               </h3>
               <div className="flex items-center gap-4">
@@ -316,7 +315,7 @@ export default function Index() {
                       className={`h-2 rounded-full transition-all ${
                         index === currentVideoIndex
                           ? "w-8 bg-primary"
-                          : "w-2 bg-gray-300 hover:bg-gray-400"
+                          : "w-2 bg-gray-300 hover:bg-hoverCyan"
                       }`}
                     />
                   ))}
@@ -352,13 +351,13 @@ export default function Index() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Отзывы членов профсоюза
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
               Услуги и программы, которые помогают нашим членам
             </p>
           </div>
@@ -367,14 +366,14 @@ export default function Index() {
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-primary transition-colors duration-300"
+                className="bg-transparent rounded-xl p-6 border border-gray-200 shadow-md hover:shadow-lg hover:border-primary transition-all duration-300"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold">
                     {review.avatar}
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-primary">{review.name}</h4>
+                    <h4 className="font-bold">{review.name}</h4>
                     <p className="text-sm text-gray-600">{review.role}</p>
                   </div>
                 </div>
@@ -387,7 +386,7 @@ export default function Index() {
                     />
                   ))}
                 </div>
-                <p className="text-gray-700 leading-relaxed">{review.text}</p>
+                <p className="text-black-75 leading-relaxed">{review.text}</p>
               </div>
             ))}
           </div>
@@ -395,18 +394,34 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-primary to-blue-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Присоединитесь к нашему профсоюзу
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Получите доступ к дополнительным услугам, программам поддержки и
-            защите своих прав
-          </p>
-          <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-colors duration-200 transform hover:scale-105">
-            Подать заявку на членство
-          </button>
+      <section className="relative py-16 md:py-24 text-white bg-transparent min-h-[320px] overflow-hidden">
+        <div className="container relative z-10 mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="hidden min-[1082px]:block flex-shrink-0 w-40 md:w-52 lg:w-64 order-2 md:order-1">
+            <img
+              src="/doctor_left.png"
+              alt=""
+              className="w-full h-auto object-contain"
+            />
+          </div>
+          <div className="flex-1 text-center order-1 md:order-2 min-w-0">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+              Присоединитесь к нашему профсоюзу
+            </h2>
+            <p className="text-lg sm:text-xl text-black-75 mb-8 max-w-2xl mx-auto">
+              Получите доступ к дополнительным услугам, программам поддержки и
+              защите своих прав
+            </p>
+            <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-colors duration-200 transform hover:scale-105">
+              Подать заявку на членство
+            </button>
+          </div>
+          <div className="hidden min-[1082px]:block flex-shrink-0 w-40 md:w-52 lg:w-64 order-3">
+            <img
+              src="/doctor_right.png"
+              alt=""
+              className="w-full h-auto object-contain"
+            />
+          </div>
         </div>
       </section>
 

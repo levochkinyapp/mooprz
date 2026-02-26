@@ -5,38 +5,38 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-white mt-20">
+    <footer className="text-black-75 mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="font-bold text-lg mb-4">О нас</h3>
-            <p className="text-sm text-blue-100 leading-relaxed">
+            <h3 className="font-bold text-base sm:text-lg mb-4">О нас</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
               Московская областная организация профсоюза работников здравоохранения РФ защищает интересы медицинских работников Подмосковья.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Быстрые ссылки</h3>
+            <h3 className="font-bold text-base sm:text-lg mb-4">Быстрые ссылки</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/news" className="text-blue-100 hover:text-white transition-colors">
+                <Link to="/news" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Новости
                 </Link>
               </li>
               <li>
-                <Link to="/events" className="text-blue-100 hover:text-white transition-colors">
+                <Link to="/events" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Мероприятия
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-blue-100 hover:text-white transition-colors">
+                <Link to="/services" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Услуги
                 </Link>
               </li>
               <li>
-                <Link to="/documents" className="text-blue-100 hover:text-white transition-colors">
+                <Link to="/documents" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Документы
                 </Link>
               </li>
@@ -45,25 +45,25 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Услуги</h3>
+            <h3 className="font-bold text-base sm:text-lg mb-4">Услуги</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-blue-100 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Путёвки и оздоровление
                 </a>
               </li>
               <li>
-                <a href="#" className="text-blue-100 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Юридическая помощь
                 </a>
               </li>
               <li>
-                <a href="#" className="text-blue-100 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Обучение и повышение квалификации
                 </a>
               </li>
               <li>
-                <a href="#" className="text-blue-100 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Членство
                 </a>
               </li>
@@ -72,24 +72,24 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Контакты</h3>
+            <h3 className="font-bold text-base sm:text-lg mb-4">Контакты</h3>
             <div className="space-y-3 text-sm">
               <div className="flex gap-2">
                 <MapPin size={16} className="flex-shrink-0 mt-0.5" />
-                <span className="text-blue-100">
-                  Московская область, г. Королёв
+                <span className="text-gray-600">
+                  119331, г. Москва, ул. Марии Ульяновой, д. 9, корп. 1
                 </span>
               </div>
               <div className="flex gap-2">
                 <Phone size={16} className="flex-shrink-0 mt-0.5" />
-                <a href="tel:+79991234567" className="text-blue-100 hover:text-white transition-colors">
+                <a href="tel:+79991234567" className="text-gray-600 hover:text-gray-900 transition-colors">
                   +7 (999) 123-45-67
                 </a>
               </div>
               <div className="flex gap-2">
                 <Mail size={16} className="flex-shrink-0 mt-0.5" />
-                <a href="mailto:info@moopz.ru" className="text-blue-100 hover:text-white transition-colors">
-                  info@moopz.ru
+                <a href="mailto:moopzdr@medicalprof.ru" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  moopzdr@medicalprof.ru
                 </a>
               </div>
             </div>
@@ -97,9 +97,9 @@ export default function Footer() {
         </div>
 
         {/* Social Links */}
-        <div className="border-t border-blue-400 pt-8 mb-8">
+        <div className="border-t border-gray-300 pt-8 mb-8">
           <div className="flex items-center justify-between flex-col md:flex-row gap-4">
-            <p className="text-sm text-blue-100">
+            <p className="text-sm text-gray-600">
               Следите за нами в социальных сетях
             </p>
             <div className="flex gap-4">
@@ -107,32 +107,27 @@ export default function Footer() {
                 href="https://vk.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors flex items-center justify-center"
+                className="w-10 h-10 bg-[#0077FF] hover:bg-[#0066DD] rounded-full transition-colors flex items-center justify-center"
                 title="VK"
                 aria-label="VK"
               >
-                <svg
-                  className="w-5 h-5 text-white"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M6 7v10h2l3-5 3 5h2V7h-2v6l-2-3-2 3V7H6z" />
-                </svg>
+                <span className="text-white font-bold text-sm leading-none">VK</span>
               </a>
               <a
                 href="https://t.me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors flex items-center justify-center"
+                className="w-10 h-10 bg-[#0088cc] hover:bg-[#0077b5] rounded-full transition-colors flex items-center justify-center"
                 title="Telegram"
                 aria-label="Telegram"
               >
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-5 h-5 text-white shrink-0"
                   viewBox="0 0 24 24"
                   fill="currentColor"
+                  aria-hidden
                 >
-                  <path d="M3 11L20.5 3.5L12 20.5L10 13.5L4 11.5Z" fillRule="evenodd" />
+                  <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.84.42z" />
                 </svg>
               </a>
             </div>
@@ -140,7 +135,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-blue-400 pt-6 text-center text-sm text-blue-100">
+        <div className="border-t border-gray-300 pt-6 text-center text-sm text-gray-600">
           <p>
             &copy; {currentYear} Московская областная организация профсоюза
             работников здравоохранения РФ. Все права защищены.

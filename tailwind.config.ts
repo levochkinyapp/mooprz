@@ -5,8 +5,20 @@ export default {
   content: ["./client/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
+    screens: {
+      /** mobile: < 640px */
+      sm: "640px",
+      /** tablet: 640px+ */
+      md: "768px",
+      /** desktop: 1024px+ */
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      /** Переключение на мобильное меню при ширине < 1164px */
+      nav: "1164px",
+    },
     fontFamily: {
-      sans: ["Montserrat", "Roboto", "sans-serif"],
+      sans: ["Lato", "sans-serif"],
       serif: ["Georgia", "serif"],
     },
     container: {
@@ -17,6 +29,19 @@ export default {
       },
     },
     extend: {
+      /** Типографика в em (масштабируется с html font-size) */
+      fontSize: {
+        xs: ["0.75em", { lineHeight: "1em" }],
+        sm: ["0.875em", { lineHeight: "1.25em" }],
+        base: ["1em", { lineHeight: "1.5em" }],
+        lg: ["1.125em", { lineHeight: "1.75em" }],
+        xl: ["1.25em", { lineHeight: "1.75em" }],
+        "2xl": ["1.5em", { lineHeight: "2em" }],
+        "3xl": ["1.875em", { lineHeight: "2.25em" }],
+        "4xl": ["2.25em", { lineHeight: "2.5em" }],
+        "5xl": ["3em", { lineHeight: "1.2" }],
+        "6xl": ["3.75em", { lineHeight: "1.1" }],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -66,6 +91,11 @@ export default {
           red: "hsl(var(--brand-red))",
           gray: "hsl(var(--brand-gray))",
         },
+        /** Hover для нейтральных кнопок: CMYK 0/0/0/100, 10% */
+        hoverCyan: "var(--hover-cyan)",
+        /** Текст чёрный 75% (пункты меню и т.п.) */
+        "black-75": "hsl(var(--text-black-75))",
+        heading: "var(--heading)",
       },
       borderRadius: {
         lg: "var(--radius)",
