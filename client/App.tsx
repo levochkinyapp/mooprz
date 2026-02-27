@@ -5,18 +5,24 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import News from "./pages/News";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
 import YouthCouncil from "./pages/YouthCouncil";
+import About from "./pages/About";
+import Struktura from "./pages/Struktura";
+import Predsedatel from "./pages/Predsedatel";
+import PolitikaKonfidencialnosti from "./pages/PolitikaKonfidencialnosti";
 
 const App = () => (
   <TooltipProvider>
     <Toaster />
     <Sonner />
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/youth-council" element={<YouthCouncil />} />
@@ -39,10 +45,25 @@ const App = () => (
         <Route path="/services/sotsialnoe-partnyorstvo" element={<Placeholder title="Социальное партнёрство" />} />
         <Route path="/services/mezhdunarodnoe-sotrudnichestvo" element={<Placeholder title="Международное сотрудничество" />} />
         <Route path="/documents" element={<Placeholder title="Документы" />} />
-        <Route path="/about" element={<Placeholder title="О нас" />} />
-        <Route path="/contacts" element={<Placeholder title="Контакты" />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/about/struktura" element={<Struktura />} />
+        <Route path="/about/struktura/predsedatel" element={<Predsedatel />} />
+        <Route path="/about/struktura/predsedatel/suslonova" element={<Placeholder title="Нина Владимировна Суслонова" />} />
+        <Route path="/about/struktura/zamestiteli-predsedatelya" element={<Placeholder title="Заместители председателя МООПРЗ РФ" />} />
+        <Route path="/about/struktura/otdel-ohrany-truda" element={<Placeholder title="Отдел охраны труда" />} />
+        <Route path="/about/struktura/otdel-sotsialno-ekonomicheskoy-zashchity" element={<Placeholder title="Отдел социально-экономической защиты" />} />
+        <Route path="/about/struktura/otdel-pravovoy-zashchity" element={<Placeholder title="Отдел правовой защиты" />} />
+        <Route path="/about/struktura/informatsionnyy-otdel" element={<Placeholder title="Информационный отдел" />} />
+        <Route path="/about/struktura/organizatsionno-analiticheskiy-otdel" element={<Placeholder title="Организационно-аналитический отдел" />} />
+        <Route path="/about/struktura/finansovyy-otdel" element={<Placeholder title="Финансовый отдел" />} />
+        <Route path="/about/vyshestoyashchie-organizatsii" element={<Placeholder title="Вышестоящие организации" />} />
+        <Route path="/about/organizatsionno-ustavnye-dokumenty" element={<Placeholder title="Организационно-уставные документы" />} />
+        <Route path="/about/istoricheskaya-spravka" element={<Placeholder title="Историческая справка" />} />
+        <Route path="/politika-konfidencialnosti" element={<PolitikaKonfidencialnosti />} />
+              <Route path="/contacts" element={<Placeholder title="Контакты" />} />
+              <Route path="/search" element={<Placeholder title="Поиск" />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </TooltipProvider>

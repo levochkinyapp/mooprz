@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { InternalLink } from "@/components/InternalLink";
 import { FileText } from "lucide-react";
 
 interface PlaceholderProps {
@@ -29,7 +30,7 @@ export default function Placeholder({ title }: PlaceholderProps) {
           </p>
 
           <div className="bg-secondary/20 border-l-4 border-primary rounded-lg p-6 text-left">
-            <p className="text-black-75 mb-3">
+            <p className="text-gray-600 mb-3">
               💡 <span className="font-semibold">Хотите наполнить эту страницу?</span>
             </p>
             <p className="text-gray-600 text-sm">
@@ -39,12 +40,12 @@ export default function Placeholder({ title }: PlaceholderProps) {
           </div>
 
           <div className="mt-8">
-            <a
-              href="/"
+            <InternalLink
+              to="/"
               className="inline-block px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-blue-900 transition-colors duration-200"
             >
               Вернуться на главную
-            </a>
+            </InternalLink>
           </div>
         </div>
       </main>

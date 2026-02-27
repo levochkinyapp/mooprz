@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { InternalLink } from "@/components/InternalLink";
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -30,7 +31,7 @@ const NotFound = () => {
             404
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl font-semibold text-black-75 mb-2">
+          <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-600 mb-2">
             Страница не найдена
           </p>
 
@@ -42,12 +43,12 @@ const NotFound = () => {
             Путь: <code className="bg-muted/80 px-3 py-1 rounded font-mono border border-gray-200">{location.pathname}</code>
           </p>
 
-          <a
-            href="/"
+          <InternalLink
+            to="/"
             className="inline-block px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-blue-900 transition-colors duration-200"
           >
             Вернуться на главную
-          </a>
+          </InternalLink>
         </div>
       </main>
 

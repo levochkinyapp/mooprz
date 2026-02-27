@@ -139,16 +139,16 @@
     width: 100%;
   }
 
-  /* Responsive typography base: mobile → tablet → desktop */
+  /* Responsive typography base in relative units (1rem = browser default 16px) */
   html {
     background-color: transparent;
-    font-size: 14px; /* mobile < 640px */
+    font-size: 87.5%; /* 14px @ 16px — mobile < 640px */
   }
   @media (min-width: 640px) {
-    html { font-size: 15px; } /* tablet */
+    html { font-size: 93.75%; } /* 15px — tablet */
   }
   @media (min-width: 1024px) {
-    html { font-size: 16px; } /* desktop */
+    html { font-size: 100%; } /* 16px — desktop */
   }
 
   body {

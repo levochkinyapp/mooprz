@@ -1,19 +1,38 @@
-import { Link } from "react-router-dom";
+import { InternalLink } from "@/components/InternalLink";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-black-75 mt-20">
+    <footer className="text-gray-600 mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
             <h3 className="font-bold text-base sm:text-lg mb-4">О нас</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Московская областная организация профсоюза работников здравоохранения РФ защищает интересы медицинских работников Подмосковья.
-            </p>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <InternalLink to="/about/struktura" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Структура
+                </InternalLink>
+              </li>
+              <li>
+                <InternalLink to="/about/vyshestoyashchie-organizatsii" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Вышестоящие организации
+                </InternalLink>
+              </li>
+              <li>
+                <InternalLink to="/about/organizatsionno-ustavnye-dokumenty" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Организационно-уставные документы
+                </InternalLink>
+              </li>
+              <li>
+                <InternalLink to="/politika-konfidencialnosti" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Политика конфиденциальности МООП РЗ РФ
+                </InternalLink>
+              </li>
+            </ul>
           </div>
 
           {/* Quick Links */}
@@ -21,24 +40,24 @@ export default function Footer() {
             <h3 className="font-bold text-base sm:text-lg mb-4">Быстрые ссылки</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/news" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <InternalLink to="/news" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Новости
-                </Link>
+                </InternalLink>
               </li>
               <li>
-                <Link to="/events" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <InternalLink to="/events" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Мероприятия
-                </Link>
+                </InternalLink>
               </li>
               <li>
-                <Link to="/services" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <InternalLink to="/services" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Услуги
-                </Link>
+                </InternalLink>
               </li>
               <li>
-                <Link to="/documents" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <InternalLink to="/documents" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Документы
-                </Link>
+                </InternalLink>
               </li>
             </ul>
           </div>

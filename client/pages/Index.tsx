@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { InternalLink } from "@/components/InternalLink";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -143,15 +143,15 @@ export default function Index() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight animate-fade-in">
               Московская областная организация профсоюза работников здравоохранения
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-8 animate-fade-in max-w-[600px] mt-[10px]">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 animate-fade-in max-w-[600px] mt-[0.625rem]">
               Защита интересов, поддержка и развитие медицинских работников
               Подмосковья
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-colors duration-200 transform hover:scale-105">
+              <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-[transform,background-color] duration-300 ease-out hover:scale-105">
                 Подать заявку на услугу
               </button>
-              <button className="px-8 py-3 bg-transparent border-2 border-heading text-heading font-bold rounded-lg transition-colors duration-200 hover:bg-hoverCyan">
+              <button className="px-8 py-3 bg-transparent border-2 border-heading text-heading font-bold rounded-lg transition-[background-color] duration-300 ease-out hover:bg-hoverCyan">
                 Узнать больше
               </button>
             </div>
@@ -232,24 +232,24 @@ export default function Index() {
                     Новая информация, касающаяся жизни профсоюза и интересующая
                     наших членов...
                   </p>
-                  <Link
+                  <InternalLink
                     to="/news"
                     className="text-primary hover:text-accent font-semibold text-sm transition-colors"
                   >
                     Читать далее →
-                  </Link>
+                  </InternalLink>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-8">
-            <Link
+            <InternalLink
               to="/news"
               className="px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-blue-900 transition-colors duration-200 inline-block"
             >
               Все новости
-            </Link>
+            </InternalLink>
           </div>
         </div>
       </section>
@@ -386,7 +386,7 @@ export default function Index() {
                     />
                   ))}
                 </div>
-                <p className="text-black-75 leading-relaxed">{review.text}</p>
+                <p className="text-gray-600 leading-relaxed">{review.text}</p>
               </div>
             ))}
           </div>
@@ -407,11 +407,11 @@ export default function Index() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Присоединитесь к нашему профсоюзу
             </h2>
-            <p className="text-lg sm:text-xl text-black-75 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Получите доступ к дополнительным услугам, программам поддержки и
               защите своих прав
             </p>
-            <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-colors duration-200 transform hover:scale-105">
+            <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-[transform,background-color] duration-300 ease-out hover:scale-105">
               Подать заявку на членство
             </button>
           </div>
