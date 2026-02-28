@@ -15,6 +15,16 @@ import YouthCouncil from "./pages/YouthCouncil";
 import About from "./pages/About";
 import Struktura from "./pages/Struktura";
 import Predsedatel from "./pages/Predsedatel";
+import ZamestiteliPredsedatelya from "./pages/ZamestiteliPredsedatelya";
+import OtdelOhranyTruda from "./pages/OtdelOhranyTruda";
+import OtdelSotsialnoEkonomicheskoyZashchity from "./pages/OtdelSotsialnoEkonomicheskoyZashchity";
+import OtdelPravovoyZashchity from "./pages/OtdelPravovoyZashchity";
+import InformatsionnyyOtdel from "./pages/InformatsionnyyOtdel";
+import OrganizatsionnoAnaliticheskiyOtdel from "./pages/OrganizatsionnoAnaliticheskiyOtdel";
+import FinansovyyOtdel from "./pages/FinansovyyOtdel";
+import VyshestoyashchieOrganizatsii from "./pages/VyshestoyashchieOrganizatsii";
+import ProfsoyuznyeOrganizatsii from "./pages/ProfsoyuznyeOrganizatsii";
+import IstoricheskayaSpravka from "./pages/IstoricheskayaSpravka";
 import PolitikaKonfidencialnosti from "./pages/PolitikaKonfidencialnosti";
 
 const App = () => (
@@ -49,16 +59,24 @@ const App = () => (
         <Route path="/about/struktura" element={<Struktura />} />
         <Route path="/about/struktura/predsedatel" element={<Predsedatel />} />
         <Route path="/about/struktura/predsedatel/suslonova" element={<Placeholder title="Нина Владимировна Суслонова" />} />
-        <Route path="/about/struktura/zamestiteli-predsedatelya" element={<Placeholder title="Заместители председателя МООПРЗ РФ" />} />
-        <Route path="/about/struktura/otdel-ohrany-truda" element={<Placeholder title="Отдел охраны труда" />} />
-        <Route path="/about/struktura/otdel-sotsialno-ekonomicheskoy-zashchity" element={<Placeholder title="Отдел социально-экономической защиты" />} />
-        <Route path="/about/struktura/otdel-pravovoy-zashchity" element={<Placeholder title="Отдел правовой защиты" />} />
-        <Route path="/about/struktura/informatsionnyy-otdel" element={<Placeholder title="Информационный отдел" />} />
-        <Route path="/about/struktura/organizatsionno-analiticheskiy-otdel" element={<Placeholder title="Организационно-аналитический отдел" />} />
-        <Route path="/about/struktura/finansovyy-otdel" element={<Placeholder title="Финансовый отдел" />} />
-        <Route path="/about/vyshestoyashchie-organizatsii" element={<Placeholder title="Вышестоящие организации" />} />
+        <Route path="/about/struktura/zamestiteli-predsedatelya" element={<ZamestiteliPredsedatelya />} />
+        <Route path="/about/struktura/zamestiteli-predsedatelya/veselova" element={<Placeholder title="Веселова Татьяна Евгеньевна" />} />
+        <Route path="/about/struktura/zamestiteli-predsedatelya/katane" element={<Placeholder title="Катанэ Юлия Александровна" />} />
+        <Route path="/about/struktura/otdel-ohrany-truda" element={<OtdelOhranyTruda />} />
+        <Route path="/about/struktura/otdel-sotsialno-ekonomicheskoy-zashchity" element={<OtdelSotsialnoEkonomicheskoyZashchity />} />
+        <Route path="/about/struktura/otdel-pravovoy-zashchity" element={<OtdelPravovoyZashchity />} />
+        <Route path="/about/struktura/informatsionnyy-otdel" element={<InformatsionnyyOtdel />} />
+        <Route path="/about/struktura/organizatsionno-analiticheskiy-otdel" element={<OrganizatsionnoAnaliticheskiyOtdel />} />
+        <Route path="/about/struktura/finansovyy-otdel" element={<FinansovyyOtdel />} />
+        <Route path="/about/vyshestoyashchie-organizatsii" element={<VyshestoyashchieOrganizatsii />} />
+        <Route path="/about/vyshestoyashchie-organizatsii/fnpr" element={<Placeholder title="ФНПР" />} />
+        <Route path="/about/vyshestoyashchie-organizatsii/profsoyuz-zdravookhraneniya-rf" element={<Placeholder title="Профсоюз работников здравоохранения РФ" />} />
         <Route path="/about/organizatsionno-ustavnye-dokumenty" element={<Placeholder title="Организационно-уставные документы" />} />
-        <Route path="/about/istoricheskaya-spravka" element={<Placeholder title="Историческая справка" />} />
+        <Route path="/about/profsoyuznye-organizatsii" element={<ProfsoyuznyeOrganizatsii />} />
+        <Route path="/about/istoricheskaya-spravka" element={<IstoricheskayaSpravka />} />
+        <Route path="/about/istoricheskaya-spravka/ustav" element={<Placeholder title="Устав" />} />
+        <Route path="/about/istoricheskaya-spravka/polozheniya" element={<Placeholder title="Положения" />} />
+        <Route path="/about/istoricheskaya-spravka/postanovleniya" element={<Placeholder title="Постановления" />} />
         <Route path="/politika-konfidencialnosti" element={<PolitikaKonfidencialnosti />} />
               <Route path="/contacts" element={<Placeholder title="Контакты" />} />
               <Route path="/search" element={<Placeholder title="Поиск" />} />

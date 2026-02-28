@@ -7,6 +7,7 @@ const aboutSections = [
   { href: "/about/struktura", label: "Структура" },
   { href: "/about/vyshestoyashchie-organizatsii", label: "Вышестоящие организации" },
   { href: "/about/organizatsionno-ustavnye-dokumenty", label: "Организационно-уставные документы" },
+  { href: "/about/profsoyuznye-organizatsii", label: "Профсоюзные организации" },
   { href: "/about/istoricheskaya-spravka", label: "Историческая справка" },
 ];
 
