@@ -129,7 +129,7 @@ export default function Index() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-w-0 w-full pt-20">
+    <div className="flex flex-col min-h-screen min-w-0 w-full pt-20 border-t-0">
       <Header />
 
       {/* Hero Banner */}
@@ -137,7 +137,6 @@ export default function Index() {
         className="relative overflow-hidden bg-cover bg-center text-heading"
         style={{ backgroundImage: "url('/hero-bg.png')" }}
       >
-        <div className="absolute inset-0 bg-white/30" aria-hidden />
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="max-w-[900px]">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight animate-fade-in">
@@ -159,8 +158,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Quick Links Section */}
-      <section className="py-16 md:py-24">
+      {/* Quick Links Section — overflow-hidden обрезает тени карточек, чтобы не было полосы над «Мы в цифрах» */}
+      <section className="py-16 md:py-24 border-0 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
@@ -193,8 +192,40 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Мы в цифрах — фон как у Hero: cover + center, без растягивания при масштабе */}
+      <section className="relative -mt-px -mb-1 py-16 md:py-24 overflow-hidden border-0 isolate">
+        <div
+          className="absolute inset-0 -bottom-1 bg-cover bg-center backface-hidden opacity-80"
+          style={{ backgroundImage: "url('/we-in-numbers-bg.png')" }}
+          aria-hidden
+        />
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--heading)] text-center mb-12">
+            Мы в цифрах
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto justify-items-center">
+            <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem]">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">30+</div>
+              <div className="text-sm sm:text-base text-gray-600">лет на защите интересов</div>
+            </div>
+            <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem]">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">45</div>
+              <div className="text-sm sm:text-base text-gray-600">территориальных организаций</div>
+            </div>
+            <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem]">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">50 000+</div>
+              <div className="text-sm sm:text-base text-gray-600">членов профсоюза</div>
+            </div>
+            <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem] sm:col-span-2 md:col-span-1">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">24/7</div>
+              <div className="text-sm sm:text-base text-gray-600">поддержка и консультации</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* News/Updates Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 border-0 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
@@ -393,17 +424,22 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-16 md:py-24 text-white bg-transparent min-h-[320px] overflow-hidden">
+      {/* CTA Section — фон как у «Мы в цифрах»: cover + center */}
+      <section className="relative pt-5 pb-0 text-white bg-transparent min-h-[320px] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center backface-hidden opacity-80"
+          style={{ backgroundImage: "url('/cta-bg.png')" }}
+          aria-hidden
+        />
         <div className="container relative z-10 mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="hidden min-[1082px]:block flex-shrink-0 w-40 md:w-52 lg:w-64 order-2 md:order-1">
+          <div className="hidden min-[1082px]:block flex-shrink-0 w-40 md:w-52 lg:w-64 order-2 md:order-1 md:self-end">
             <img
               src="/doctor_left.png"
               alt=""
               className="w-full h-auto object-contain"
             />
           </div>
-          <div className="flex-1 text-center order-1 md:order-2 min-w-0">
+          <div className="flex-1 text-center order-1 md:order-2 min-w-0 md:self-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Присоединитесь к нашему профсоюзу
             </h2>
@@ -415,7 +451,7 @@ export default function Index() {
               Подать заявку на членство
             </button>
           </div>
-          <div className="hidden min-[1082px]:block flex-shrink-0 w-40 md:w-52 lg:w-64 order-3">
+          <div className="hidden min-[1082px]:block flex-shrink-0 w-40 md:w-52 lg:w-64 order-3 md:self-end">
             <img
               src="/doctor_right.png"
               alt=""

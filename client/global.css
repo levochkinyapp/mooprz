@@ -25,7 +25,7 @@
     /* Текст чёрный с интенсивностью 75% (пункты меню и подобное) */
     --text-black-75: 0 0% 25%;
 
-    /* Типографика в em (относительно html font-size) */
+    /* Типографика в em — масштабируется с html font-size (адаптивно по брейкпоинтам) */
     --text-xs: 0.75em;
     --text-sm: 0.875em;
     --text-base: 1em;
@@ -132,6 +132,15 @@
     @apply border-border;
   }
 
+  /* Секции и main без границ и без outline/тени — убирает артефакты (полосы) на стыках при узком viewport */
+  section,
+  main {
+    border-width: 0 !important;
+    border-style: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
   /* Предотвращаем горизонтальный скролл (кнопки видеокарусели и др.) */
   html,
   body {
@@ -139,16 +148,29 @@
     width: 100%;
   }
 
-  /* Responsive typography base in relative units (1rem = browser default 16px) */
+  /*
+   * Адаптивная типографика в EM.
+   * Базовый размер html задаётся в % от 16px; все размеры в em масштабируются автоматически.
+   * Брейкпоинты (mobile-first): 360px, 480px, 640px (sm), 768px (md), 1024px (lg).
+   */
   html {
     background-color: transparent;
-    font-size: 87.5%; /* 14px @ 16px — mobile < 640px */
+    font-size: 81.25%; /* 13px — очень узкие экраны (< 360px) */
+  }
+  @media (min-width: 360px) {
+    html { font-size: 87.5%; } /* 14px — мобильные 360px+ */
+  }
+  @media (min-width: 480px) {
+    html { font-size: 90.625%; } /* 14.5px — крупный мобильный */
   }
   @media (min-width: 640px) {
-    html { font-size: 93.75%; } /* 15px — tablet */
+    html { font-size: 93.75%; } /* 15px — sm, планшет */
+  }
+  @media (min-width: 768px) {
+    html { font-size: 96.875%; } /* 15.5px — md */
   }
   @media (min-width: 1024px) {
-    html { font-size: 100%; } /* 16px — desktop */
+    html { font-size: 100%; } /* 16px — lg, десктоп */
   }
 
   body {
@@ -160,11 +182,15 @@
     overflow-wrap: normal;
     word-break: normal;
     hyphens: none;
+    border: none;
+    box-shadow: none;
   }
 
   #root {
     background-color: transparent;
     min-height: 100%;
+    border: none;
+    box-shadow: none;
   }
 
   h1, h2, h3, h4, h5, h6 {

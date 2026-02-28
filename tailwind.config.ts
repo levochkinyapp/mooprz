@@ -6,11 +6,15 @@ export default {
   prefix: "",
   theme: {
     screens: {
-      /** mobile: < 640px */
+      /** Очень узкий мобильный 360px+ (совпадает с брейкпоинтами типографики в global.css) */
+      xs: "360px",
+      /** Крупный мобильный 480px+ */
+      "mobile": "480px",
+      /** sm: 640px+ */
       sm: "640px",
-      /** tablet: 640px+ */
+      /** md: 768px+ */
       md: "768px",
-      /** desktop: 1024px+ */
+      /** lg: 1024px+ */
       lg: "1024px",
       xl: "1280px",
       "2xl": "1536px",

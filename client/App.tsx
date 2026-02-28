@@ -1,6 +1,5 @@
 import "./global.css";
 
-import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -26,10 +25,10 @@ import VyshestoyashchieOrganizatsii from "./pages/VyshestoyashchieOrganizatsii";
 import ProfsoyuznyeOrganizatsii from "./pages/ProfsoyuznyeOrganizatsii";
 import IstoricheskayaSpravka from "./pages/IstoricheskayaSpravka";
 import PolitikaKonfidencialnosti from "./pages/PolitikaKonfidencialnosti";
+import YuridicheskayaPomoshchInspector from "./pages/YuridicheskayaPomoshchInspector";
 
 const App = () => (
   <TooltipProvider>
-    <Toaster />
     <Sonner />
     <BrowserRouter>
       <ScrollToTop />
@@ -51,7 +50,10 @@ const App = () => (
         <Route path="/news/mezhdunarodnaya-rabota" element={<Placeholder title="Международная работа" />} />
         <Route path="/events" element={<Placeholder title="Мероприятия" />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/services/yuridicheskaya-pomoshch-inspector" element={<Placeholder title="Юридическая помощь / Инспектор профсоюза" />} />
+        <Route path="/services/yuridicheskaya-pomoshch-inspector" element={<YuridicheskayaPomoshchInspector />} />
+        <Route path="/services/yuridicheskaya-pomoshch-inspector/pravovaya-zashchita" element={<Placeholder title="Правовая защита" />} />
+        <Route path="/services/yuridicheskaya-pomoshch-inspector/oplata-truda" element={<Placeholder title="Оплата труда" />} />
+        <Route path="/services/yuridicheskaya-pomoshch-inspector/ohrana-truda" element={<Placeholder title="Охрана труда" />} />
         <Route path="/services/sotsialnoe-partnyorstvo" element={<Placeholder title="Социальное партнёрство" />} />
         <Route path="/services/mezhdunarodnoe-sotrudnichestvo" element={<Placeholder title="Международное сотрудничество" />} />
         <Route path="/documents" element={<Placeholder title="Документы" />} />
@@ -78,10 +80,10 @@ const App = () => (
         <Route path="/about/istoricheskaya-spravka/polozheniya" element={<Placeholder title="Положения" />} />
         <Route path="/about/istoricheskaya-spravka/postanovleniya" element={<Placeholder title="Постановления" />} />
         <Route path="/politika-konfidencialnosti" element={<PolitikaKonfidencialnosti />} />
-              <Route path="/contacts" element={<Placeholder title="Контакты" />} />
-              <Route path="/search" element={<Placeholder title="Поиск" />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
+        <Route path="/contacts" element={<Placeholder title="Контакты" />} />
+        <Route path="/search" element={<Placeholder title="Поиск" />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </TooltipProvider>

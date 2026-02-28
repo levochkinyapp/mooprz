@@ -1,6 +1,5 @@
 import { InternalLink } from "@/components/InternalLink";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { Users } from "lucide-react";
 
 const youthCouncilSections = [
@@ -14,11 +13,8 @@ const youthCouncilSections = [
 
 export default function YouthCouncil() {
   return (
-    <div className="flex flex-col min-h-screen pt-20">
-      <Header />
-
-      <main className="flex-1 container mx-auto px-4 py-16 md:py-24">
-        <div className="text-center mb-12">
+    <PageLayout>
+      <div className="text-center mb-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Молодёжный совет</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Выберите раздел для получения информации о молодёжных программах и инициативах профсоюза
@@ -41,9 +37,6 @@ export default function YouthCouncil() {
             </InternalLink>
           ))}
         </div>
-      </main>
-
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }
