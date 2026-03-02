@@ -9,8 +9,8 @@ export default function PolitikaKonfidencialnosti() {
       <main className="flex-1 container mx-auto px-4 py-12 md:py-16">
         <article className="max-w-3xl mx-auto prose prose-gray prose-headings:font-bold">
           <h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-center leading-[2.875rem]"
-            style={{ lineHeight: "2.875rem", verticalAlign: "bottom" }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-center leading-tight"
+            style={{ verticalAlign: "bottom" }}
           >
             Политика конфиденциальности персональных данных
           </h1>

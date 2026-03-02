@@ -1,15 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { InternalLink } from "@/components/InternalLink";
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, Glasses } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/** Переключение на мобильное меню (гамбургер + поиск): при ширине меньше этого значения. Учтена ширина пунктов навигации + кнопка поиска. */
+/** Переключение на мобильное меню (гамбургер + поиск): при ширине меньше этого значения. */
 const NAV_BREAKPOINT_PX = 1200;
+/** В режиме для слабовидящих переключаемся на мобильную версию раньше (увеличенный шрифт занимает больше места). */
+const NAV_BREAKPOINT_WEAK_SIGHT_PX = 1440;
 const COLLAPSE_DURATION_MS = 500;
+const WEAK_SIGHT_STORAGE_KEY = "mooprz-weak-sight";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isWeakSightMode, setIsWeakSightMode] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem(WEAK_SIGHT_STORAGE_KEY) === "1";
+  });
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFieldWidth, setSearchFieldWidth] = useState(192);
   const [searchFieldHeight, setSearchFieldHeight] = useState(40);
@@ -59,9 +66,15 @@ export default function Header() {
       window.removeEventListener("resize", updateWidth);
     };
   }, [searchQuery, isSearchOpen]);
-  const [isWideViewport, setIsWideViewport] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia(`(min-width: ${NAV_BREAKPOINT_PX}px)`).matches : true
-  );
+
+  const navBreakpointPx = isWeakSightMode ? NAV_BREAKPOINT_WEAK_SIGHT_PX : NAV_BREAKPOINT_PX;
+  const [isWideViewport, setIsWideViewport] = useState(() => {
+    if (typeof window === "undefined") return true;
+    const bp = window.localStorage.getItem(WEAK_SIGHT_STORAGE_KEY) === "1"
+      ? NAV_BREAKPOINT_WEAK_SIGHT_PX
+      : NAV_BREAKPOINT_PX;
+    return window.matchMedia(`(min-width: ${bp}px)`).matches;
+  });
   const [isCollapsing, setIsCollapsing] = useState(false);
   const [isExpanding, setIsExpanding] = useState(false);
   const [expandingTrigger, setExpandingTrigger] = useState(false);
@@ -74,7 +87,7 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    const mql = window.matchMedia(`(min-width: ${NAV_BREAKPOINT_PX}px)`);
+    const mql = window.matchMedia(`(min-width: ${navBreakpointPx}px)`);
     wasWideRef.current = mql.matches;
     setIsWideViewport(mql.matches);
 
@@ -103,7 +116,7 @@ export default function Header() {
     };
     mql.addEventListener("change", handleChange);
     return () => mql.removeEventListener("change", handleChange);
-  }, []);
+  }, [isWeakSightMode, navBreakpointPx]);
 
   useEffect(() => {
     if (!isExpanding) return;
@@ -186,6 +199,16 @@ export default function Header() {
     }
   }, [isSearchOpen]);
 
+  useEffect(() => {
+    if (isWeakSightMode) {
+      document.documentElement.classList.add("weak-sight-mode");
+      window.localStorage.setItem(WEAK_SIGHT_STORAGE_KEY, "1");
+    } else {
+      document.documentElement.classList.remove("weak-sight-mode");
+      window.localStorage.removeItem(WEAK_SIGHT_STORAGE_KEY);
+    }
+  }, [isWeakSightMode]);
+
   const navLinks = [
     { href: "/", label: "Главная" },
     { href: "/news", label: "Новости" },
@@ -220,14 +243,16 @@ export default function Header() {
               width={75}
               height={75}
             />
-            <div
-              className="hidden sm:block text-[0.6875rem] font-bold uppercase leading-[1.35] tracking-tight self-center mt-[0.625rem]"
-              style={{ color: "var(--logo-name)" }}
-            >
-              <div className="whitespace-nowrap">Московская областная организация</div>
-              <div className="whitespace-nowrap">профсоюза работников</div>
-              <div className="whitespace-nowrap">здравоохранения</div>
-            </div>
+            {!isWeakSightMode && (
+              <div
+                className="hidden sm:block text-[0.6875rem] font-bold uppercase leading-tight tracking-tight self-center mt-[0.625rem]"
+                style={{ color: "var(--logo-name)" }}
+              >
+                <div className="whitespace-nowrap">Московская областная организация</div>
+                <div className="whitespace-nowrap">профсоюза работников</div>
+                <div className="whitespace-nowrap">здравоохранения</div>
+              </div>
+            )}
           </InternalLink>
 
           {/* Обёртка: десктопное меню уезжает вправо за 500ms, затем показывается кнопка мобильного меню */}
@@ -254,6 +279,19 @@ export default function Header() {
                   {link.label}
                 </InternalLink>
               ))}
+              <button
+                type="button"
+                onClick={() => setIsWeakSightMode((v) => !v)}
+                className={cn(
+                  "p-2.5 rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                  isWeakSightMode ? "text-primary bg-primary/10" : "text-gray-600 hover:text-primary"
+                )}
+                aria-pressed={isWeakSightMode}
+                aria-label="Версия для слабовидящих"
+                title="Версия для слабовидящих"
+              >
+                <Glasses size={20} className="shrink-0" aria-hidden />
+              </button>
               <div ref={searchDesktopRef} className="relative flex flex-col items-end">
                 <button
                   type="button"
@@ -365,6 +403,19 @@ export default function Header() {
                 </nav>
               </div>
             </div>
+            <button
+              type="button"
+              onClick={() => setIsWeakSightMode((v) => !v)}
+              className={cn(
+                "p-2.5 rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                isWeakSightMode ? "text-primary bg-primary/10" : "text-gray-600 hover:text-primary"
+              )}
+              aria-pressed={isWeakSightMode}
+              aria-label="Версия для слабовидящих"
+              title="Версия для слабовидящих"
+            >
+              <Glasses size={20} className="shrink-0" aria-hidden />
+            </button>
             <div ref={searchMobileRef} className="relative flex flex-col items-end">
               <button
                 type="button"

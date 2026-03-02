@@ -9,6 +9,11 @@
   <body>
     <div id="root"></div>
 
+    <script>
+      if (localStorage.getItem("mooprz-weak-sight") === "1") {
+        document.documentElement.classList.add("weak-sight-mode");
+      }
+    </script>
     <script type="module" src="/client/App.tsx"></script>
   </body>
 </html>

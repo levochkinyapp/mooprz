@@ -417,7 +417,7 @@ export default function Index() {
                     />
                   ))}
                 </div>
-                <p className="text-gray-600 leading-relaxed">{review.text}</p>
+                <p className="text-gray-600 leading-tight">{review.text}</p>
               </div>
             ))}
           </div>

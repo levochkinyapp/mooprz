@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { UserCircle } from "lucide-react";
 import { useModal } from "@/hooks/useModal";
 import { ModalOverlay } from "@/components/ModalOverlay";
+import { PageLayout } from "@/components/PageLayout";
 
 const TITLE = "Информационный отдел";
 
@@ -21,9 +20,8 @@ export default function InformatsionnyyOtdel() {
   useModal(isOpen, () => setIsOpen(false));
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-16 md:py-24">
+    <>
+      <PageLayout>
         <div className="text-center mb-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{TITLE}</h1>
         </div>
@@ -43,9 +41,8 @@ export default function InformatsionnyyOtdel() {
             </span>
           </button>
         </div>
-      </main>
+      </PageLayout>
       <ModalOverlay open={isOpen} onClose={() => setIsOpen(false)} ariaLabel={personLabel} />
-      <Footer />
-    </div>
+    </>
   );
 }

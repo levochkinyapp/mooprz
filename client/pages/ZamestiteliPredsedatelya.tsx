@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { UserCircle } from "lucide-react";
 import { useModal } from "@/hooks/useModal";
 import { ModalOverlay } from "@/components/ModalOverlay";
+import { PageLayout } from "@/components/PageLayout";
 
 const TITLE = "Заместители председателя МООПРЗ РФ";
 
@@ -22,9 +21,8 @@ export default function ZamestiteliPredsedatelya() {
   useModal(openId !== null, () => setOpenId(null));
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-16 md:py-24">
+    <>
+      <PageLayout>
         <div className="text-center mb-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{TITLE}</h1>
         </div>
@@ -47,7 +45,7 @@ export default function ZamestiteliPredsedatelya() {
             </button>
           ))}
         </div>
-      </main>
+      </PageLayout>
       <ModalOverlay
         open={openId !== null}
         onClose={() => setOpenId(null)}
@@ -57,7 +55,6 @@ export default function ZamestiteliPredsedatelya() {
           <h2 className="text-xl font-bold text-heading">{personLabel(openPerson)}</h2>
         ) : null}
       </ModalOverlay>
-      <Footer />
-    </div>
+    </>
   );
 }

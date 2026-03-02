@@ -33,18 +33,19 @@ export default {
       },
     },
     extend: {
+      /** Иерархия шрифта: глобальные стили и классы .typography-* в global.css */
       /** Типографика в em (масштабируется с html font-size) */
       fontSize: {
-        xs: ["0.75em", { lineHeight: "1em" }],
-        sm: ["0.875em", { lineHeight: "1.25em" }],
-        base: ["1em", { lineHeight: "1.5em" }],
-        lg: ["1.125em", { lineHeight: "1.75em" }],
-        xl: ["1.25em", { lineHeight: "1.75em" }],
-        "2xl": ["1.5em", { lineHeight: "2em" }],
-        "3xl": ["1.875em", { lineHeight: "2.25em" }],
-        "4xl": ["2.25em", { lineHeight: "2.5em" }],
-        "5xl": ["3em", { lineHeight: "1.2" }],
-        "6xl": ["3.75em", { lineHeight: "1.1" }],
+        xs: ["0.75em", { lineHeight: "1.25" }],
+        sm: ["0.875em", { lineHeight: "1.25" }],
+        base: ["1em", { lineHeight: "1.25" }],
+        lg: ["1.125em", { lineHeight: "1.25" }],
+        xl: ["1.25em", { lineHeight: "1.25" }],
+        "2xl": ["1.5em", { lineHeight: "1.25" }],
+        "3xl": ["1.875em", { lineHeight: "1.25" }],
+        "4xl": ["2.25em", { lineHeight: "1.25" }],
+        "5xl": ["3em", { lineHeight: "1.25" }],
+        "6xl": ["3.75em", { lineHeight: "1.25" }],
       },
       colors: {
         border: "hsl(var(--border))",

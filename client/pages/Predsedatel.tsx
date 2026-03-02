@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { UserCircle } from "lucide-react";
 import { useModal } from "@/hooks/useModal";
 import { ModalOverlay } from "@/components/ModalOverlay";
+import { PageLayout } from "@/components/PageLayout";
 
 const TITLE = "Председатель Московской областной организации профсоюза работников здравоохранения РФ";
 
@@ -12,14 +11,11 @@ export default function Predsedatel() {
   useModal(isProfileOpen, () => setIsProfileOpen(false));
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
-      <Header />
-
-      <main className="flex-1 container mx-auto px-4 py-16 md:py-24">
+    <>
+      <PageLayout>
         <div className="text-center mb-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{TITLE}</h1>
         </div>
-
         <div className="flex justify-center max-w-4xl mx-auto">
           <button
             type="button"
@@ -36,26 +32,23 @@ export default function Predsedatel() {
             </span>
           </button>
         </div>
-      </main>
-
+      </PageLayout>
       <ModalOverlay
         open={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
         ariaLabel="Информация о Нине Владимировне Суслоновой"
       >
-        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+        <div className="flex flex-col gap-6">
           <img
             src="/suslonova.png"
             alt="Нина Владимировна Суслонова"
-            className="w-full md:w-72 h-auto rounded-xl object-cover"
+            className="w-full max-w-sm mx-auto h-auto rounded-xl object-cover"
           />
-
           <div className="min-w-0">
             <h2 className="text-xl sm:text-2xl font-bold text-heading mb-4">
               Нина Владимировна Суслонова
             </h2>
-
-            <div className="space-y-4 text-gray-600 leading-relaxed">
+            <div className="space-y-4 text-gray-600 leading-tight">
               <p>
                 28 июля 2021 года на внеочередной конференции Московской областной организации профсоюза
                 работников здравоохранения РФ Нина Владимировна Суслонова избрана председателем.
@@ -109,8 +102,6 @@ export default function Predsedatel() {
           </div>
         </div>
       </ModalOverlay>
-
-      <Footer />
-    </div>
+    </>
   );
 }
