@@ -66,6 +66,11 @@ export default function Footer({ hideContactIcons, hideSocialLinks }: FooterProp
                   Документы
                 </InternalLink>
               </li>
+              <li>
+                <InternalLink to="/faq" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Часто задаваемые вопросы / FAQ
+                </InternalLink>
+              </li>
             </ul>
           </div>
 

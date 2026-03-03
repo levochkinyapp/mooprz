@@ -239,7 +239,7 @@ export default function Header() {
             <img
               src="/logo-emblem.png"
               alt=""
-              className="h-[75px] w-[75px] object-contain shrink-0 self-center"
+              className="h-14 w-14 sm:h-[75px] sm:w-[75px] object-contain shrink-0 self-center"
               width={75}
               height={75}
             />

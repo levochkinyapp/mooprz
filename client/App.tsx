@@ -48,7 +48,7 @@ const App = () => (
         <Route path="/news/ozdorovlenie" element={<Placeholder title="Оздоровление" />} />
         <Route path="/news/sotspartnyorstvo" element={<Placeholder title="Соцпартнёрство" />} />
         <Route path="/news/mezhdunarodnaya-rabota" element={<Placeholder title="Международная работа" />} />
-        <Route path="/events" element={<Placeholder title="Мероприятия" />} />
+        <Route path="/events" element={<Placeholder title="Мероприятия" backgroundImage="/news-bg.png" />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/yuridicheskaya-pomoshch-inspector" element={<YuridicheskayaPomoshchInspector />} />
         <Route path="/services/yuridicheskaya-pomoshch-inspector/pravovaya-zashchita" element={<Placeholder title="Правовая защита" />} />
@@ -80,7 +80,8 @@ const App = () => (
         <Route path="/about/istoricheskaya-spravka/polozheniya" element={<Placeholder title="Положения" />} />
         <Route path="/about/istoricheskaya-spravka/postanovleniya" element={<Placeholder title="Постановления" />} />
         <Route path="/politika-konfidencialnosti" element={<PolitikaKonfidencialnosti />} />
-        <Route path="/contacts" element={<Placeholder title="Контакты" />} />
+        <Route path="/contacts" element={<Placeholder title="Контакты" backgroundImage="/news-bg.png" />} />
+        <Route path="/faq" element={<Placeholder title="Часто задаваемые вопросы / FAQ" />} />
         <Route path="/search" element={<Placeholder title="Поиск" />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />

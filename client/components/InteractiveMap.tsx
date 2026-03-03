@@ -1,6 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 
-export default function InteractiveMap() {
+const SEARCH_MATCH_CLASS = "search-match";
+const SEARCH_MISMATCH_CLASS = "search-mismatch";
+
+type InteractiveMapProps = {
+  /** Поиск по названиям участков на карте (data-name) */
+  searchQuery?: string;
+  /** Вызывается при загрузке карты с массивом названий участков (data-name) */
+  onDistrictNamesLoaded?: (names: string[]) => void;
+};
+
+export default function InteractiveMap({ searchQuery = "", onDistrictNamesLoaded }: InteractiveMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [svgContent, setSvgContent] = useState("");
   const [tooltip, setTooltip] = useState<{
@@ -10,10 +20,25 @@ export default function InteractiveMap() {
   } | null>(null);
   const [popup, setPopup] = useState<{ name: string } | null>(null);
 
+  const onDistrictNamesLoadedRef = useRef(onDistrictNamesLoaded);
+  onDistrictNamesLoadedRef.current = onDistrictNamesLoaded;
+
   useEffect(() => {
     fetch("/moscow-oblast-map.svg")
       .then((r) => r.text())
-      .then(setSvgContent);
+      .then((html) => {
+        setSvgContent(html);
+        const cb = onDistrictNamesLoadedRef.current;
+        if (cb) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "image/svg+xml");
+          const paths = doc.querySelectorAll("path[data-name]");
+          const names = Array.from(paths)
+            .map((p) => p.getAttribute("data-name") || "")
+            .filter(Boolean);
+          cb(names);
+        }
+      });
   }, []);
 
   useEffect(() => {
@@ -63,6 +88,24 @@ export default function InteractiveMap() {
       svg.removeEventListener("click", onClick);
     };
   }, [svgContent]);
+
+  // Подсветка/затемнение участков по поисковому запросу
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const paths = el.querySelectorAll<SVGPathElement>("path[data-name]");
+    const query = searchQuery.toLowerCase().trim();
+
+    paths.forEach((path) => {
+      path.classList.remove(SEARCH_MATCH_CLASS, SEARCH_MISMATCH_CLASS);
+      if (!query) return;
+
+      const name = (path.getAttribute("data-name") || "").toLowerCase();
+      const matches = name.includes(query);
+      path.classList.add(matches ? SEARCH_MATCH_CLASS : SEARCH_MISMATCH_CLASS);
+    });
+  }, [svgContent, searchQuery]);
 
   const closePopup = () => {
     setPopup(null);

@@ -368,4 +368,13 @@
     color: inherit !important;
     stroke: currentColor;
   }
+
+  /* Карта организаций: подсветка по поиску */
+  #moscow-oblast-map path.search-mismatch {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  #moscow-oblast-map path.search-match {
+    opacity: 1;
+  }
 }

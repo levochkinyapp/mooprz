@@ -148,7 +148,7 @@ export default function Index() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="px-8 py-3 bg-accent hover:bg-red-600 text-white font-bold rounded-lg transition-[transform,background-color] duration-300 ease-out hover:scale-105">
-                Подать заявку на услугу
+                Подать заявку на членство
               </button>
               <button className="px-8 py-3 bg-transparent border-2 border-heading text-heading font-bold rounded-lg transition-[background-color] duration-300 ease-out hover:bg-hoverCyan">
                 Узнать больше
