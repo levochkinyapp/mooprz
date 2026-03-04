@@ -24,16 +24,15 @@ export default function Services() {
   return (
     <PageLayout backgroundImage="/news-bg.png">
       <div className="text-center mb-12">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Услуги</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Выберите раздел для получения информации об услугах профсоюза
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {serviceSections.map((section) => {
-            const Icon = section.Icon;
-            return (
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Услуги</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Выберите раздел для получения информации об услугах профсоюза
+        </p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {serviceSections.map((section) => {
+          const Icon = section.Icon;
+          return (
             <InternalLink
               key={section.href}
               to={section.href}
@@ -47,8 +46,8 @@ export default function Services() {
               </span>
             </InternalLink>
           );
-          })}
-        </div>
+        })}
+      </div>
     </PageLayout>
   );
 }

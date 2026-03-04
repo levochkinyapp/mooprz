@@ -378,3 +378,46 @@
     opacity: 1;
   }
 }
+/* === Accessibility mode === */
+
+html.weak-sight-mode body,
+html.weak-sight-mode div,
+html.weak-sight-mode section,
+html.weak-sight-mode header,
+html.weak-sight-mode footer,
+html.weak-sight-mode main {
+  background: #000 !important;
+  color: #fff !important;
+}
+html.weak-sight-mode img,
+html.weak-sight-mode svg {
+  background: transparent !important;
+}
+html.weak-sight-mode a {
+  color: #ffff00 !important;
+}
+html.weak-sight-mode a:hover {
+  color: #fff !important;
+}
+
+html.weak-sight-mode button {
+  color: #ffff00 !important;
+  border: 2px solid #fff !important;
+}
+html.weak-sight-mode button:hover {
+  color: #fff !important;
+}
+/* === Режимы для слабовидящих: масштабирование корня html === */
+/* Все размеры в em/rem масштабируются, иерархия шрифтов сохраняется. */
+
+html.font-size-large {
+  font-size: 125% !important; /* A+ — +25% к базовому размеру */
+}
+
+html.font-size-xlarge {
+  font-size: 150% !important; /* A++ — +50% к базовому размеру */
+}
+/* В режиме A++ на любом масштабе экрана: только иконка меню, без надписи «Меню» */
+html.font-size-xlarge .header-menu-label {
+  display: none !important;
+}

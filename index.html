@@ -10,9 +10,14 @@
     <div id="root"></div>
 
     <script>
-      if (localStorage.getItem("mooprz-weak-sight") === "1") {
-        document.documentElement.classList.add("weak-sight-mode");
-      }
+      (function () {
+        var v = localStorage.getItem("mooprz-weak-sight");
+        if (v === "large" || v === "1") {
+          document.documentElement.classList.add("weak-sight-mode", "font-size-large");
+        } else if (v === "xlarge") {
+          document.documentElement.classList.add("weak-sight-mode", "font-size-xlarge");
+        }
+      })();
     </script>
     <script type="module" src="/client/App.tsx"></script>
   </body>
