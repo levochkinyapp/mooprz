@@ -1,0 +1,39 @@
+#!/usr/bin/expect -f
+# Запуск однократной настройки на сервере по SSH (пароль из DEPLOY_PASSWORD).
+# Использование: DEPLOY_PASSWORD='...' ./scripts/remote-setup.exp
+# Локально копирует scripts/setup-production.sh на сервер и запускает его.
+
+set timeout 300
+set host "89.23.102.48"
+set user "root"
+set password $env(DEPLOY_PASSWORD)
+
+set git_repo "https://github.com/levochkinyapp/mooprz.git"
+set script_dir [file dirname [info script]]
+set script_path $script_dir/setup-production.sh
+if {![file exists $script_path]} {
+    puts "Not found: $script_path"
+    exit 1
+}
+
+# 1) Копируем скрипт на сервер через scp
+spawn scp -o StrictHostKeyChecking=no $script_path ${user}@${host}:/tmp/setup-production.sh
+
+expect {
+    "password:" { send "${password}\r"; exp_continue }
+    "yes/no" { send "yes\r"; exp_continue }
+    eof
+}
+set result [wait]
+if {[lindex $result 3] != 0} { exit 1 }
+
+# 2) Запускаем настройку (одна строка — один аргумент для ssh)
+set remote_cmd "export GIT_REPO='$git_repo'; bash /tmp/setup-production.sh"
+spawn ssh -o StrictHostKeyChecking=no $user@$host "$remote_cmd"
+
+expect {
+    "password:" { send "${password}\r"; exp_continue }
+    "yes/no" { send "yes\r"; exp_continue }
+    eof
+}
+wait

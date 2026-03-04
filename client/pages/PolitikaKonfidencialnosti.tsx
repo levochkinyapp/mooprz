@@ -1,13 +1,9 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 
 export default function PolitikaKonfidencialnosti() {
   return (
-    <div className="flex flex-col min-h-screen pt-20">
-      <Header />
-
-      <main className="flex-1 container mx-auto px-4 py-12 md:py-16">
-        <article className="max-w-3xl mx-auto prose prose-gray prose-headings:font-bold">
+    <PageLayout mainClassName="py-12 md:py-16">
+      <article className="max-w-3xl mx-auto prose prose-gray prose-headings:font-bold">
           <h1
             className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-center leading-tight"
             style={{ verticalAlign: "bottom" }}
@@ -250,10 +246,7 @@ export default function PolitikaKonfidencialnosti() {
             </a>
             .
           </p>
-        </article>
-      </main>
-
-      <Footer />
-    </div>
+      </article>
+    </PageLayout>
   );
 }

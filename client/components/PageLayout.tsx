@@ -19,16 +19,18 @@ export function PageLayout({ children, className, mainClassName, backgroundImage
     children
   );
 
+  const mainClasses = cn(
+    "flex-1",
+    backgroundImage && "relative min-h-[60vh] bg-cover bg-center bg-no-repeat",
+    !backgroundImage && "container mx-auto px-4",
+    mainClassName ?? (!backgroundImage ? "py-16 md:py-24" : "")
+  );
+
   return (
     <div className={cn("flex flex-col min-h-screen min-w-0 w-full pt-20", className)}>
       <Header />
       <main
-        className={cn(
-          "flex-1",
-          backgroundImage && "relative min-h-[60vh] bg-cover bg-center bg-no-repeat",
-          !backgroundImage && "container mx-auto px-4 py-16 md:py-24",
-          mainClassName
-        )}
+        className={mainClasses}
         style={backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : undefined}
       >
         {mainContent}

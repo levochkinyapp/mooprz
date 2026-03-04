@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+set timeout 15
+set password $env(DEPLOY_PASSWORD)
+set cmd "pm2 logs mooprz --lines 20 --nostream 2>&1; echo '---'; curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3080/; echo ''"
+spawn ssh -o StrictHostKeyChecking=no root@89.23.102.48 $cmd
+expect "password:" { send "$password\r" }
+expect eof
+wait

@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+set timeout 30
+set password $env(DEPLOY_PASSWORD)
+set cmd "grep -q '^PORT=' /var/www/mooprz/.env && sed -i 's/^PORT=.*/PORT=3080/' /var/www/mooprz/.env || echo 'PORT=3080' >> /var/www/mooprz/.env; cd /var/www/mooprz && pm2 restart mooprz --update-env && pm2 save; sleep 2; curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3080/"
+spawn ssh -o StrictHostKeyChecking=no root@89.23.102.48 $cmd
+expect "password:" { send "$password\r" }
+expect eof
+wait

@@ -347,7 +347,7 @@ export default function Header() {
             <button
                 type="button"
                 onClick={toggleMenu}
-                className="group min-w-[7.5rem] min-h-[44px] p-3 -m-1 flex items-center gap-2 rounded-lg overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                className="group min-w-[44px] min-h-[44px] min-[800px]:min-w-[7.5rem] p-3 -m-1 flex items-center gap-2 rounded-lg overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 aria-expanded={isOpen}
                 aria-controls="mobile-nav"
                 aria-label={isOpen ? "Закрыть меню" : "Открыть меню"}
@@ -355,7 +355,7 @@ export default function Header() {
                 <span
                   className={cn(
                     "shrink-0 transition-transform duration-200 ease-out",
-                    isOpen && "translate-x-[5rem]"
+                    isOpen && "min-[800px]:translate-x-[5rem]"
                   )}
                 >
                   <Menu
@@ -366,7 +366,7 @@ export default function Header() {
                 </span>
                 <span
                   className={cn(
-                    "overflow-hidden transition-[max-width,opacity] duration-200 ease-out inline-block",
+                    "overflow-hidden transition-[max-width,opacity] duration-200 ease-out inline-block hidden min-[800px]:inline-block",
                     isOpen ? "max-w-0 opacity-0" : "max-w-[5rem] opacity-100"
                   )}
                 >

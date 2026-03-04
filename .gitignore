@@ -24,4 +24,8 @@ dist-ssr
 *.sw?
 
 .config/
-!.env
+
+# Env: не коммитить секреты
+.env
+.env.local
+.env.*.local

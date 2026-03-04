@@ -1,0 +1,32 @@
+#!/usr/bin/expect -f
+# Копирует исправленный server/node-build.ts на сервер, пересборка, PM2 restart, затем настройка SSL.
+set timeout 300
+set password $env(DEPLOY_PASSWORD)
+set host "89.23.102.48"
+set user "root"
+
+# 1) Copy fixed file
+spawn scp -o StrictHostKeyChecking=no server/node-build.ts ${user}@${host}:/var/www/mooprz/server/node-build.ts
+expect "password:" { send "$password\r" }
+expect eof
+wait
+
+# 2) Rebuild and restart
+set cmd "cd /var/www/mooprz && pnpm build && pm2 restart mooprz && pm2 save"
+spawn ssh -o StrictHostKeyChecking=no $user@$host $cmd
+expect "password:" { send "$password\r" }
+expect eof
+wait
+
+# 3) Copy and run SSL fix script
+spawn scp -o StrictHostKeyChecking=no scripts/fix-ssl-on-server.sh ${user}@${host}:/tmp/fix-ssl.sh
+expect "password:" { send "$password\r" }
+expect eof
+wait
+
+spawn ssh -o StrictHostKeyChecking=no $user@$host "bash /tmp/fix-ssl.sh"
+expect "password:" { send "$password\r" }
+expect eof
+wait
+
+puts "\nDone. Check https://mooprz.myunion.pro"

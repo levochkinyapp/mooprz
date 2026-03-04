@@ -1,0 +1,24 @@
+# Автодеплой на mooprz.myunion.pro при push в ветку main.
+# Секреты в настройках репозитория: DEPLOY_SSH_KEY (приватный ключ), DEPLOY_HOST, DEPLOY_USER.
+
+name: Deploy to production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            export DEPLOY_BRANCH=main
+            cd /var/www/mooprz && git fetch origin && git checkout main && git pull origin main
+            cd /var/www/mooprz && pnpm install --frozen-lockfile && pnpm build
+            pm2 restart mooprz --update-env && pm2 save
