@@ -205,19 +205,19 @@ export default function Index() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto justify-items-center">
             <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem]">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">30+</div>
+              <div className="stats-digit text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">30+</div>
               <div className="text-sm sm:text-base text-gray-600">лет на защите интересов</div>
             </div>
             <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem]">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">45</div>
+              <div className="stats-digit text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">45</div>
               <div className="text-sm sm:text-base text-gray-600">территориальных организаций</div>
             </div>
             <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem]">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">50 000+</div>
+              <div className="stats-digit text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">50 000+</div>
               <div className="text-sm sm:text-base text-gray-600">членов профсоюза</div>
             </div>
             <div className="flex flex-col items-center text-center w-full sm:max-w-[12rem] sm:col-span-2 md:col-span-1">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">24/7</div>
+              <div className="stats-digit text-3xl sm:text-4xl md:text-5xl font-bold text-red-600 mb-1">24/7</div>
               <div className="text-sm sm:text-base text-gray-600">поддержка и консультации</div>
             </div>
           </div>

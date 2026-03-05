@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+# Деплой на сервер: pull, install, build, pm2 restart. Пароль из DEPLOY_PASSWORD.
+set timeout 180
+set password $env(DEPLOY_PASSWORD)
+spawn ssh -o StrictHostKeyChecking=no root@89.23.102.48 "cd /var/www/mooprz && bash scripts/deploy-on-server.sh"
+expect "password:" { send "$password\r"; exp_continue }
+expect eof
+wait

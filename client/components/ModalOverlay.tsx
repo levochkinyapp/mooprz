@@ -20,7 +20,7 @@ export function ModalOverlay({ open, onClose, ariaLabel, children = null }: Moda
     >
       <div
         className={cn(
-          "relative mx-auto mt-10 md:mt-16 w-full max-w-4xl max-h-[80vh] overflow-y-auto overscroll-y-contain rounded-xl bg-white border border-gray-200 shadow-lg p-6 md:p-8 transition-[transform,opacity] duration-200 ease-out origin-top",
+          "relative mx-auto mt-10 md:mt-16 w-full max-w-4xl max-h-[80vh] flex flex-col overflow-hidden rounded-xl bg-white border border-gray-200 shadow-lg transition-[transform,opacity] duration-200 ease-out origin-top",
           open ? "scale-100 opacity-100" : "scale-95 opacity-0"
         )}
         onClick={(e) => e.stopPropagation()}
@@ -28,15 +28,19 @@ export function ModalOverlay({ open, onClose, ariaLabel, children = null }: Moda
         aria-modal="true"
         aria-label={ariaLabel}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors"
-          aria-label="Закрыть окно"
-        >
-          <X size={20} />
-        </button>
-        {children}
+        <div className="shrink-0 flex justify-end p-2 md:p-4 pb-0 md:pb-0">
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors"
+            aria-label="Закрыть окно"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        <div className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain px-6 md:px-8 pt-2 pb-6 md:pb-8">
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { X } from "lucide-react";
 
 const SEARCH_MATCH_CLASS = "search-match";
 const SEARCH_MISMATCH_CLASS = "search-mismatch";
@@ -137,20 +138,30 @@ export default function InteractiveMap({ searchQuery = "", onDistrictNamesLoaded
             className="fixed inset-0 z-40 bg-black/20"
             onClick={closePopup}
           />
-          <div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-2xl border border-gray-200 px-6 py-5 min-w-[240px] max-w-[360px]">
-            <h3 className="text-lg font-bold text-[#003366] mb-1">
-              {popup.name}
-            </h3>
-            <p className="text-sm text-gray-600 mb-3">
-              Организации профсоюза работников здравоохранения
-            </p>
-            <button
-              type="button"
-              onClick={closePopup}
-              className="text-sm font-medium text-[#003366] hover:text-[#3a7bd5] transition-colors"
-            >
-              Закрыть
-            </button>
+          <div
+            className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col min-w-[240px] max-w-[360px] bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label={popup.name}
+          >
+            <div className="shrink-0 flex justify-end p-2">
+              <button
+                type="button"
+                onClick={closePopup}
+                className="p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors"
+                aria-label="Закрыть окно"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="px-6 pb-6 pt-0">
+              <h3 className="text-lg font-bold text-[#003366] mb-1">
+                {popup.name}
+              </h3>
+              <p className="text-sm text-gray-600">
+                Организации профсоюза работников здравоохранения
+              </p>
+            </div>
           </div>
         </>
       )}
