@@ -1,5 +1,5 @@
-import { InternalLink } from "@/components/InternalLink";
 import { PageLayout } from "@/components/PageLayout";
+import { SectionLinkCard } from "@/components/SectionLinkCard";
 import { Network } from "lucide-react";
 
 const sections = [
@@ -7,6 +7,8 @@ const sections = [
   { href: "/about/istoricheskaya-spravka/polozheniya", label: "Положения" },
   { href: "/about/istoricheskaya-spravka/postanovleniya", label: "Постановления" },
 ];
+
+const cardClassName = "w-full sm:w-[283px] min-h-0 sm:min-h-[122px]";
 
 export default function IstoricheskayaSpravka() {
   return (
@@ -21,18 +23,13 @@ export default function IstoricheskayaSpravka() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto sm:justify-items-center">
         {sections.map((section) => (
-          <InternalLink
+          <SectionLinkCard
             key={section.href}
             to={section.href}
-            className="w-full sm:w-[283px] min-h-0 sm:min-h-[122px] flex items-center gap-4 p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg hover:border-primary transition-all duration-200 group"
-          >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-              <Network className="w-6 h-6 text-primary" />
-            </div>
-            <span className="font-semibold text-gray-600 group-hover:text-primary transition-colors">
-              {section.label}
-            </span>
-          </InternalLink>
+            label={section.label}
+            icon={Network}
+            className={cardClassName}
+          />
         ))}
       </div>
     </PageLayout>

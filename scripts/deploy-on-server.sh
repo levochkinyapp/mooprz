@@ -9,6 +9,12 @@ APP_DIR="/var/www/${APP_NAME}"
 BRANCH="${DEPLOY_BRANCH:-main}"
 
 cd "$APP_DIR"
+# Nginx проксирует на 3080 — приложение должно слушать этот порт
+if [ -f .env ]; then
+  grep -q ^PORT= .env && sed -i 's/^PORT=.*/PORT=3080/' .env || echo 'PORT=3080' >> .env
+else
+  echo 'PORT=3080' > .env
+fi
 git fetch origin
 git checkout "$BRANCH"
 git pull origin "$BRANCH"

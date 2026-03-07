@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { InternalLink } from "@/components/InternalLink";
-import { useEffect } from "react";
 import { PageLayout } from "@/components/PageLayout";
 import { AlertCircle } from "lucide-react";
 
