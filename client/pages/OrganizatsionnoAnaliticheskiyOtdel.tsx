@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { UserCircle } from "lucide-react";
 import { useModal } from "@/hooks/useModal";
 import { ModalOverlay } from "@/components/ModalOverlay";
 import { PageLayout } from "@/components/PageLayout";
+import { PersonCardButton } from "@/components/PersonCardButton";
 
 const TITLE = "Организационно-аналитический отдел";
 
@@ -29,21 +29,11 @@ export default function OrganizatsionnoAnaliticheskiyOtdel() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto justify-items-center">
           {persons.map((person) => (
-            <button
+            <PersonCardButton
               key={person.id}
-              type="button"
               onClick={() => setOpenId(person.id)}
-              className="w-[283px] min-h-[122px] flex items-center gap-4 p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg hover:border-primary transition-all duration-200 group"
-            >
-              <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                <UserCircle className="w-7 h-7 text-primary" />
-              </div>
-              <span className="font-semibold text-gray-600 group-hover:text-primary transition-colors block text-left">
-                <span className="block">{person.lastName}</span>
-                <span className="block">{person.firstName}</span>
-                <span className="block">{person.patronymic}</span>
-              </span>
-            </button>
+              lines={[person.lastName, person.firstName, person.patronymic]}
+            />
           ))}
         </div>
       </PageLayout>

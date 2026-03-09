@@ -9,13 +9,13 @@ const NAV_BREAKPOINT_PX = 1200;
 const NAV_BREAKPOINT_WEAK_SIGHT_PX = 1440;
 const COLLAPSE_DURATION_MS = 500;
 const WEAK_SIGHT_STORAGE_KEY = "mooprz-weak-sight";
-type FontSizeMode = "normal" | "large" | "xlarge";
+type FontSizeMode = "normal" | "xlarge";
 
 function getStoredFontSize(): FontSizeMode {
   if (typeof window === "undefined") return "normal";
   const v = window.localStorage.getItem(WEAK_SIGHT_STORAGE_KEY);
-  if (v === "large" || v === "xlarge") return v;
-  if (v === "1") return "large"; // legacy
+  if (v === "xlarge") return "xlarge";
+  if (v === "large" || v === "1") return "xlarge"; // миграция: бывший A+ → A++
   return "normal";
 }
 
@@ -23,10 +23,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [fontSize, setFontSize] = useState<FontSizeMode>(getStoredFontSize);
-  const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
   const isWeakSightMode = fontSize !== "normal";
-  const accessibilityDesktopRef = useRef<HTMLDivElement>(null);
-  const accessibilityMobileRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFieldWidth, setSearchFieldWidth] = useState(192);
   const [searchFieldHeight, setSearchFieldHeight] = useState(40);
@@ -212,34 +209,12 @@ export default function Header() {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove("weak-sight-mode", "font-size-large", "font-size-xlarge");
-    if (fontSize !== "normal") {
-      root.classList.add("weak-sight-mode");
-      root.classList.add(fontSize === "large" ? "font-size-large" : "font-size-xlarge");
+    root.classList.remove("weak-sight-mode", "font-size-xlarge");
+    if (fontSize === "xlarge") {
+      root.classList.add("weak-sight-mode", "font-size-xlarge");
     }
     window.localStorage.setItem(WEAK_SIGHT_STORAGE_KEY, fontSize);
   }, [fontSize]);
-
-  useEffect(() => {
-    if (!isAccessibilityOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (
-        accessibilityDesktopRef.current?.contains(target) ||
-        accessibilityMobileRef.current?.contains(target)
-      ) return;
-      setIsAccessibilityOpen(false);
-    };
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsAccessibilityOpen(false);
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [isAccessibilityOpen]);
 
   const navLinks = [
     { href: "/", label: "Главная" },
@@ -311,63 +286,18 @@ export default function Header() {
                   {link.label}
                 </InternalLink>
               ))}
-              <div ref={accessibilityDesktopRef} className="relative flex flex-col items-end">
-                <button
-                  type="button"
-                  onClick={() => setIsAccessibilityOpen(!isAccessibilityOpen)}
-                  className={cn(
-                    "p-2.5 rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                    isWeakSightMode ? "text-primary bg-primary/10" : "text-gray-600 hover:text-primary"
-                  )}
-                  aria-expanded={isAccessibilityOpen}
-                  aria-label="Версия для слабовидящих"
-                  title="Версия для слабовидящих"
-                >
-                  <Glasses size={20} className="shrink-0" aria-hidden />
-                </button>
-                <div
-                  role="group"
-                  aria-label="Размер шрифта"
-                  aria-hidden={!isAccessibilityOpen}
-                  className={cn(
-                    "absolute right-0 top-full mt-1 py-2 px-2 bg-white border border-gray-200 rounded-lg shadow-lg transition-[transform,opacity] duration-200 ease-out origin-top",
-                    isAccessibilityOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0 pointer-events-none"
-                  )}
-                >
-                  <div className="flex gap-1">
-                    <button
-                      type="button"
-                      onClick={() => { setFontSize("normal"); setIsAccessibilityOpen(false); }}
-                      className={cn(
-                        "min-w-[2.5rem] py-1.5 px-2 text-sm font-medium rounded-md transition-colors",
-                        fontSize === "normal" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100"
-                      )}
-                    >
-                      A
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => { setFontSize("large"); setIsAccessibilityOpen(false); }}
-                      className={cn(
-                        "min-w-[2.5rem] py-1.5 px-2 text-sm font-medium rounded-md transition-colors",
-                        fontSize === "large" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100"
-                      )}
-                    >
-                      A+
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => { setFontSize("xlarge"); setIsAccessibilityOpen(false); }}
-                      className={cn(
-                        "min-w-[2.5rem] py-1.5 px-2 text-sm font-medium rounded-md transition-colors",
-                        fontSize === "xlarge" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100"
-                      )}
-                    >
-                      A++
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={() => setFontSize(fontSize === "xlarge" ? "normal" : "xlarge")}
+                className={cn(
+                  "p-2.5 rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                  isWeakSightMode ? "text-primary bg-primary/10" : "text-gray-600 hover:text-primary"
+                )}
+                aria-label="Версия для слабовидящих"
+                title={isWeakSightMode ? "Выключить версию для слабовидящих" : "Включить версию для слабовидящих"}
+              >
+                <Glasses size={20} className="shrink-0" aria-hidden />
+              </button>
               <div ref={searchDesktopRef} className="relative flex flex-col items-end">
                 <button
                   type="button"
@@ -459,63 +389,18 @@ export default function Header() {
                 </nav>
               </div>
             </div>
-            <div ref={accessibilityMobileRef} className="relative flex flex-col items-end">
-              <button
-                type="button"
-                onClick={() => setIsAccessibilityOpen(!isAccessibilityOpen)}
-                className={cn(
-                  "p-2.5 rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                  isWeakSightMode ? "text-primary bg-primary/10" : "text-gray-600 hover:text-primary"
-                )}
-                aria-expanded={isAccessibilityOpen}
-                aria-label="Версия для слабовидящих"
-                title="Версия для слабовидящих"
-              >
-                <Glasses size={20} className="shrink-0" aria-hidden />
-              </button>
-              <div
-                role="group"
-                aria-label="Размер шрифта"
-                aria-hidden={!isAccessibilityOpen}
-                className={cn(
-                  "absolute right-0 top-full mt-1 py-2 px-2 bg-white border border-gray-200 rounded-lg shadow-lg transition-[transform,opacity] duration-200 ease-out origin-top",
-                  isAccessibilityOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0 pointer-events-none"
-                )}
-              >
-                <div className="flex gap-1">
-                  <button
-                    type="button"
-                    onClick={() => { setFontSize("normal"); setIsAccessibilityOpen(false); }}
-                    className={cn(
-                      "min-w-[2.5rem] py-1.5 px-2 text-sm font-medium rounded-md transition-colors",
-                      fontSize === "normal" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100"
-                    )}
-                  >
-                    A
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setFontSize("large"); setIsAccessibilityOpen(false); }}
-                    className={cn(
-                      "min-w-[2.5rem] py-1.5 px-2 text-sm font-medium rounded-md transition-colors",
-                      fontSize === "large" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100"
-                    )}
-                  >
-                    A+
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setFontSize("xlarge"); setIsAccessibilityOpen(false); }}
-                    className={cn(
-                      "min-w-[2.5rem] py-1.5 px-2 text-sm font-medium rounded-md transition-colors",
-                      fontSize === "xlarge" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100"
-                    )}
-                  >
-                    A++
-                  </button>
-                </div>
-              </div>
-            </div>
+            <button
+              type="button"
+              onClick={() => setFontSize(fontSize === "xlarge" ? "normal" : "xlarge")}
+              className={cn(
+                "p-2.5 rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                isWeakSightMode ? "text-primary bg-primary/10" : "text-gray-600 hover:text-primary"
+              )}
+              aria-label="Версия для слабовидящих"
+              title={isWeakSightMode ? "Выключить версию для слабовидящих" : "Включить версию для слабовидящих"}
+            >
+              <Glasses size={20} className="shrink-0" aria-hidden />
+            </button>
             <div ref={searchMobileRef} className="relative flex flex-col items-end">
               <button
                 type="button"

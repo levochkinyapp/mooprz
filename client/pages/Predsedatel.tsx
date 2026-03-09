@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { UserCircle } from "lucide-react";
 import { useModal } from "@/hooks/useModal";
 import { ModalOverlay } from "@/components/ModalOverlay";
 import { PageLayout } from "@/components/PageLayout";
+import { PersonCardButton } from "@/components/PersonCardButton";
 
 const TITLE = "Председатель Московской областной организации профсоюза работников здравоохранения РФ";
 
@@ -17,20 +17,10 @@ export default function Predsedatel() {
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{TITLE}</h1>
         </div>
         <div className="flex justify-center max-w-4xl mx-auto">
-          <button
-            type="button"
+          <PersonCardButton
             onClick={() => setIsProfileOpen(true)}
-            className="w-[283px] min-h-[122px] flex items-center gap-4 p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg hover:border-primary transition-all duration-200 group"
-          >
-            <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <UserCircle className="w-7 h-7 text-primary" />
-            </div>
-            <span className="font-semibold text-gray-600 group-hover:text-primary transition-colors block text-left">
-              <span className="block">Нина</span>
-              <span className="block">Владимировна</span>
-              <span className="block">Суслонова</span>
-            </span>
-          </button>
+            lines={["Нина", "Владимировна", "Суслонова"]}
+          />
         </div>
       </PageLayout>
       <ModalOverlay

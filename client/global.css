@@ -414,58 +414,39 @@ html.weak-sight-mode [role="dialog"] button[aria-label="Закрыть окно"
   background-color: transparent !important;
   background-image: none !important;
 }
-/* === Режимы для слабовидящих: масштабирование корня html === */
+/* === Режим для слабовидящих A++: масштабирование корня html === */
 /* Все размеры в em/rem масштабируются, иерархия шрифтов сохраняется. */
-
-html.font-size-large {
-  font-size: 125% !important; /* A+ — +25% к базовому размеру */
-}
 
 html.font-size-xlarge {
   font-size: 150% !important; /* A++ — +50% к базовому размеру */
 }
 
-/* В A+ и A++ цифры в блоке «Мы в цифрах» — красный #DC2626 */
-html.font-size-large .stats-digit,
+/* В A++ цифры в блоке «Мы в цифрах» — красный #DC2626 */
 html.font-size-xlarge .stats-digit {
   color: #DC2626 !important;
 }
 
-/* В A+ и A++ весь серый текст — белый */
-html.font-size-large [class*="text-gray"],
+/* В A++ весь серый текст — белый */
 html.font-size-xlarge [class*="text-gray"] {
   color: #fff !important;
 }
 
-/* В A+ и A++ иконки контактов в подвале (адрес, телефон, почта) — жёлтый */
-html.font-size-large [data-footer-contact-icon],
+/* В A++ иконки контактов в подвале (адрес, телефон, почта) — жёлтый */
 html.font-size-xlarge [data-footer-contact-icon] {
   color: #ffff00 !important;
 }
 
-/* В A+ и A++ заливка и размер карточек: чёрный фон, отступы, мин. ширина и высота под увеличенный шрифт (текст не выходит за границы). */
-html.font-size-large [class*="rounded-xl"][class*="bg-white"],
+/* В A++ заливка и размер карточек: чёрный фон, отступы, мин. ширина и высота под увеличенный шрифт (текст не выходит за границы). */
 html.font-size-xlarge [class*="rounded-xl"][class*="bg-white"] {
   background-color: #000 !important;
-  padding: 1.25rem 1.5rem !important;
-  min-height: 5rem !important;
-  min-width: min(20rem, 100%) !important;
-  overflow-wrap: break-word !important;
-  word-break: break-word !important;
-}
-html.font-size-xlarge [class*="rounded-xl"][class*="bg-white"] {
   padding: 1.5rem 1.75rem !important;
   min-height: 6rem !important;
   min-width: min(24rem, 100%) !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
 }
 
-/* В A+ и A++ все заголовки — жёлтый, как у активных ссылок и кнопок */
-html.font-size-large h1,
-html.font-size-large h2,
-html.font-size-large h3,
-html.font-size-large h4,
-html.font-size-large h5,
-html.font-size-large h6,
+/* В A++ все заголовки — жёлтый, как у активных ссылок и кнопок */
 html.font-size-xlarge h1,
 html.font-size-xlarge h2,
 html.font-size-xlarge h3,
@@ -480,21 +461,15 @@ html.font-size-xlarge .header-menu-label {
   display: none !important;
 }
 
-/* В A+ и A++ при наведении: ссылки, кнопки (в т.ч. «Закрыть» в модалке — как кнопки в шапке), карточки (не модальное окно) — рамки, иконки и текст красные */
-html.font-size-large a:hover,
+/* В A++ при наведении: ссылки, кнопки (в т.ч. «Закрыть» в модалке — как кнопки в шапке), карточки (не модальное окно) — рамки, иконки и текст красные */
 html.font-size-xlarge a:hover,
-html.font-size-large button:hover,
 html.font-size-xlarge button:hover,
-html.font-size-large [class*="rounded-xl"][class*="bg-white"]:not([role="dialog"]):hover,
 html.font-size-xlarge [class*="rounded-xl"][class*="bg-white"]:not([role="dialog"]):hover {
   color: #DC2626 !important;
   border-color: #DC2626 !important;
 }
-html.font-size-large a:hover svg,
 html.font-size-xlarge a:hover svg,
-html.font-size-large button:hover svg,
 html.font-size-xlarge button:hover svg,
-html.font-size-large [class*="rounded-xl"][class*="bg-white"]:not([role="dialog"]):hover svg,
 html.font-size-xlarge [class*="rounded-xl"][class*="bg-white"]:not([role="dialog"]):hover svg {
   color: #DC2626 !important;
   stroke: #DC2626 !important;

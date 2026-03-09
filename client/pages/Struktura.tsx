@@ -18,7 +18,7 @@ const strukturaSections = [
   { href: "/about/struktura/finansovyy-otdel", label: "Финансовый отдел" },
 ];
 
-const cardClassName = "w-full sm:w-[283px] min-h-0 sm:min-h-[122px]";
+const cardClassName = "w-full";
 
 export default function Struktura() {
   return (
@@ -29,12 +29,12 @@ export default function Struktura() {
           Выберите раздел для получения информации о подразделениях МООПРЗ
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto sm:justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
         <SectionLinkCard
           to={predsedatelSection.href}
           label={predsedatelSection.label}
           icon={Network}
-          className={cn("col-span-full", cardClassName)}
+          className="col-span-full w-full"
         />
         {strukturaSections.map((section) => (
           <SectionLinkCard

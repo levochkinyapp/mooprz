@@ -12,9 +12,7 @@
     <script>
       (function () {
         var v = localStorage.getItem("mooprz-weak-sight");
-        if (v === "large" || v === "1") {
-          document.documentElement.classList.add("weak-sight-mode", "font-size-large");
-        } else if (v === "xlarge") {
+        if (v === "xlarge" || v === "large" || v === "1") {
           document.documentElement.classList.add("weak-sight-mode", "font-size-xlarge");
         }
       })();
